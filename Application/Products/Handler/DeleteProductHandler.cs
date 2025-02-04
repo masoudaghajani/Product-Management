@@ -1,4 +1,5 @@
-﻿using Application.Products.Command;
+﻿using Application.Common.Api;
+using Application.Products.Command;
 using Domain.Contracts;
 using Domain.IRepository;
 using Domain.IRepository.ShoppingStore;

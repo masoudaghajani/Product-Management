@@ -1,4 +1,5 @@
-﻿using Domain.Contracts;
+﻿using Application.Common.Api;
+using Domain.Contracts;
 using Domain.Models;
 using MediatR;
 using System;

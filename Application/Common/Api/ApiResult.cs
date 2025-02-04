@@ -6,28 +6,28 @@ using System.Threading.Tasks;
 
 namespace Application.Common.Api
 {
-    public class ApiResult<T>
+    public class Result<T>
     {
         public bool IsSuccess { get; }
         public T? Data { get; }
         public string? ErrorMessage { get; }
 
-        private ApiResult(T data)
+        private Result(T data)
         {
             IsSuccess = true;
             Data = data;
             ErrorMessage = null;
         }
 
-        private ApiResult(string errorMessage)
+        private Result(string errorMessage)
         {
             IsSuccess = false;
             Data = default;
             ErrorMessage = errorMessage;
         }
 
-        public static ApiResult<T> Success(T data) => new ApiResult<T>(data);
-        public static ApiResult<T> Failure(string errorMessage) => new ApiResult<T>(errorMessage);
+        public static Result<T> Success(T data) => new Result<T>(data);
+        public static Result<T> Failure(string errorMessage) => new Result<T>(errorMessage);
     }
 
 }

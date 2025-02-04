@@ -17,7 +17,7 @@ namespace Presentation.Controllers
     [Route("[controller]")]
     [EnableRateLimiting("SlowDown")]
     [ServiceFilter(typeof(ExceptionAttribute))]
-   
+    [Authorize]
     public class HomeController : ControllerBase
     {
         private readonly IMediator _mediator;
@@ -35,10 +35,10 @@ namespace Presentation.Controllers
             var result = await _mediator.Send(query);
             if (result.IsSuccess)
             {
-                return Ok(ApiResult<IEnumerable<Product>>.Success(result.Value));
+                return Ok(Result<IEnumerable<Product>>.Success(result.Data));
             }
 
-            return BadRequest(ApiResult<IEnumerable<Product>>.Failure(result.Error));
+            return BadRequest(Result<IEnumerable<Product>>.Failure(result.ErrorMessage));
         }
         [HttpGet("GetById")]
         public async Task<IActionResult> GetById(Guid id)
@@ -47,10 +47,10 @@ namespace Presentation.Controllers
             var result = await _mediator.Send(query);
             if (result.IsSuccess)
             {
-                return Ok(ApiResult<Product>.Success(result.Value));
+                return Ok(Result<Product>.Success(result.Data));
             }
 
-            return BadRequest(ApiResult<Product>.Failure(result.Error));
+            return BadRequest(Result<Product>.Failure(result.ErrorMessage));
         }
         [HttpPost("CreateProduct")]
         public async Task<IActionResult> CreateProduct(ProductAddVm productAddVm)
@@ -59,10 +59,10 @@ namespace Presentation.Controllers
             var result = await _mediator.Send(query);
             if (result.IsSuccess)
             {
-                return Ok(ApiResult<Guid>.Success(result.Value.Id));
+                return Ok(Result<Guid>.Success(result.Data.Id));
             }
 
-            return BadRequest(ApiResult<IEnumerable<Product>>.Failure(result.Error));
+            return BadRequest(Result<IEnumerable<Product>>.Failure(result.ErrorMessage));
         }
         [HttpPut("UpdateProduct")]
         public async Task<IActionResult> UpdateProduct(ProductAddVm productAddVm)
@@ -71,10 +71,10 @@ namespace Presentation.Controllers
             var result = await _mediator.Send(query);
             if (result.IsSuccess)
             {
-                return Ok(ApiResult<Guid>.Success(result.Value.Id));
+                return Ok(Result<Guid>.Success(result.Data.Id));
             }
 
-            return BadRequest(ApiResult<IEnumerable<Product>>.Failure(result.Error));
+            return BadRequest(Result<IEnumerable<Product>>.Failure(result.ErrorMessage));
         }
         [HttpDelete("DeleteProduct")]
         public async Task<IActionResult> DeleteProduct(Guid productGuid)
@@ -83,10 +83,10 @@ namespace Presentation.Controllers
             var result = await _mediator.Send(query);
             if (result.IsSuccess)
             {
-                return Ok(ApiResult<Guid>.Success(result.Value.Id));
+                return Ok(Result<Guid>.Success(result.Data.Id));
             }
 
-            return BadRequest(ApiResult<IEnumerable<Product>>.Failure(result.Error));
+            return BadRequest(Result<IEnumerable<Product>>.Failure(result.ErrorMessage));
         }
 
     }

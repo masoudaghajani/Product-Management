@@ -1,4 +1,5 @@
-﻿using Application.Mapper;
+﻿using Application.Common.Api;
+using Application.Mapper;
 using Application.Products.Command;
 using Domain.Contracts;
 using Domain.IRepository.ShoppingStore;
