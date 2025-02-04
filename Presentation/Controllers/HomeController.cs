@@ -1,7 +1,7 @@
+using Application.Common.Api;
 using Application.Products.Command;
 using Application.Products.Queries;
 using Domain.Models;
-using Infrastructure.Api;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Components.Forms;
@@ -17,7 +17,7 @@ namespace Presentation.Controllers
     [Route("[controller]")]
     [EnableRateLimiting("SlowDown")]
     [ServiceFilter(typeof(ExceptionAttribute))]
-    [Authorize]
+   
     public class HomeController : ControllerBase
     {
         private readonly IMediator _mediator;

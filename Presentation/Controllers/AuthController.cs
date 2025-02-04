@@ -1,6 +1,4 @@
-﻿using Domain.Models;
-using Infrastructure.Api;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 namespace Presentation.Controllers
 {
     [Route("api/auth")]
